@@ -65,8 +65,8 @@ public class TreeController {
         List<Map<String, String>> result = new ArrayList<>();
         File path = new File(model.get("fullPath"));
 
-        boolean isFileLength = true;
-        boolean isFileCnt = true;
+        boolean isFileLength = Boolean.valueOf(model.get("isFileLength"));
+        boolean isFileCnt = Boolean.valueOf(model.get("isFileCnt"));
 
         try (Stream<Path> pathStream = Files.list(path.toPath())) {
             List<File> list = pathStream.map(Path::toFile).filter(File::isDirectory).sorted().collect(Collectors.toList());
