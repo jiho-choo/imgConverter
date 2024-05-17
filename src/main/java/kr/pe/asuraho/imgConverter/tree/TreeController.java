@@ -23,13 +23,14 @@ import java.util.stream.Stream;
 
 @Controller
 public class TreeController {
-    @Value("default.images")
+
+    @Value("${default.images}")
     private String images;
 
-    @Value("default.width")
+    @Value("${default.width}")
     private String defaultWidth;
 
-    @Value("default.height")
+    @Value("${default.height}")
     private String defaultHeight;
 
     /***
@@ -41,7 +42,12 @@ public class TreeController {
 
     @PostConstruct
     public void setRegexp() {
-        regexp = "^([\\s]+(\\.(?i)(" + images + "))$)";
+        regexp = "^([\\S]+(\\.(?i)(" + images + "))$)";
+
+//        regexp = "^\\\\S+.(?i)(txt|pdf|hwp|xls)$";
+
+
+
     }
 
     final private SimpleDateFormat yyyymmddhhmmss = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
